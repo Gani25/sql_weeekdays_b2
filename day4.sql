@@ -63,3 +63,5 @@ select * from country;
 -- find all the continents
 select continent from country;
 select distinct continent from country;
+
+-- find all the unique ratings from sakila db film table
