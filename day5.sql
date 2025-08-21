@@ -30,3 +30,42 @@ select sum(population) as total_population,
 avg(population) as average_population
 from country;
 
+-- Find Sum of population in each continent
+select * from country
+where continent = "North America";
+
+
+select continent, sum(population) as total_population 
+from country where continent = "North America";
+select continent, sum(population) as total_population 
+from country where continent = "Asia";
+
+select * from country
+order by continent;
+
+select continent, sum(population) from country
+group by continent;
+
+-- find number of countries in each continent
+select continent, count(*) as num_of_countries from country
+group by continent;
+
+-- find number of countries in each continent 
+-- where country count is more than 30
+
+-- whenever we create column by formula or by functions ->
+-- Generated columns
+select continent, count(*) as country_count
+from country
+group by continent
+having country_count > 30;
+
+-- Find all countries where indepyear have null values
+select * from country
+where indepyear is null;
+
+select * from country
+where indepyear is not null;
+
+-- in | not in 
+-- between | not between
