@@ -81,3 +81,33 @@ From world db
 1. Find the average life expectancy for each continent.
 2. ⁠Find the minimum and maximum life expectancy for each continent.
 */
+
+use sakila;
+-- 1. Count how many rentals have return_date as NULL.
+select * from rental where rental_date is null;
+
+-- 2. ⁠Find how many addresses have postal_code missing (NULL).
+select * from address where postal_code = "";
+
+-- 3. ⁠Find the average length of films in each rating category where the 
+-- average length is greater than 100 minutes.
+select rating, avg(length) as average_length from film
+group by rating
+having average_length > 100;
+
+/*
+From world db
+1. Find the average life expectancy for each continent.
+2. ⁠Find the minimum and maximum life expectancy for each continent.
+*/
+
+use world;
+select * from country;
+-- 1. Find the average life expectancy for each continent.
+select continent, avg(lifeExpectancy) as avg_life_expectancy from country
+group by continent;
+
+-- 2. ⁠Find the minimum and maximum life expectancy for each continent.
+select continent, min(lifeExpectancy) as min_expectancy, 
+max(lifeExpectancy) as max_expectancy from country
+group by continent;
