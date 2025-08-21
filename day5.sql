@@ -69,3 +69,15 @@ where indepyear is not null;
 
 -- in | not in 
 -- between | not between
+
+/*
+TASK:
+From sakila db
+1. Count how many rentals have return_date as NULL.
+2. ⁠Find how many addresses have postal_code missing (NULL).
+3. ⁠Find the average length of films in each rating category where the average length is greater than 100 minutes.
+
+From world db
+1. Find the average life expectancy for each continent.
+2. ⁠Find the minimum and maximum life expectancy for each continent.
+*/
