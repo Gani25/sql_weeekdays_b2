@@ -52,3 +52,4 @@ alter table student
 add addmission_date datetime;
 
 select * from student;
+
