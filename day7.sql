@@ -74,3 +74,23 @@ insert into student(roll_no, name,email,age) values
 
 insert into student(name,email,age) values
 ("Ajit Sharma", "ajit1235@gmail.com",50);
+
+
+
+select * from student;
+
+
+-- DML (UPDATE | DELETE) -> COndition is compulsory
+-- condition -> use either primary key or unique column
+
+update student
+set email = "abdul12@gmail.com"
+where roll_no = 2;
+
+select * from student;
+update student
+set email = "ajit_gupta512@gmail.com", 
+name = "Ajit Gupta", age = 25
+where roll_no = 32;
+
+select * from student;
