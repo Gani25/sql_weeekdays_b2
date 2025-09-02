@@ -46,3 +46,4 @@ where roll_no = 2;
 
 select * from student;
 
+-- Insert all the remaining students
