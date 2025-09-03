@@ -47,3 +47,29 @@ where roll_no = 2;
 select * from student;
 
 -- Insert all the remaining students
+insert into student values
+(3,"Abdul","3315",3),
+(1,	"Ajit","1234",3),
+(1,	"Ajit","1234",4),
+(2,	"Shivani", "8761",5),
+(4,	"Shoaib", "1333",1);
+
+select * from course;
+select * from student;
+
+alter table student
+add gender varchar(10) after phno;
+
+select * from student;
+update student
+set gender = "Male"
+where roll_no in (1,3,4);
+
+select * from student;
+update student
+set gender = "Female"
+where roll_no = 2;
+
+select * from course;
+select * from student;
+
