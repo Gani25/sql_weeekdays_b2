@@ -42,3 +42,38 @@ select concat_ws(" ",extra_item,item_name) menu,
 from food_item
 cross join toppings;
 
+select * from toppings;
+
+select concat_ws(" ",extra_item,item_name) menu, 
+(item_price + additional_price) total 
+from food_item
+cross join toppings
+order by item_name, total;
+
+
+-- natural Join -> Create automatic condition on matching column name
+/*
+Inner
+Outer
+*/
+
+
+select * from my_table_one;
+select * from my_table_two;
+
+-- id colm is repeated in both table so it is creating condition
+-- only with id column
+select * from my_table_one
+natural join my_table_two;
+
+alter table my_table_two
+rename column value to data;
+
+select * from my_table_two;
+
+-- id and data both are same in both table
+select * from my_table_one
+natural join my_table_two;
+
+select * from my_table_one
+natural left join my_table_two;
