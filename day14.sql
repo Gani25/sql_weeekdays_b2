@@ -59,3 +59,56 @@ e2.eid mid, ifnull(e2.ename,"Co Founder") manager_name
 from employee e1
 left join employee e2
 on e1.reports_to = e2.eid;
+
+-- union -> 
+/*
+1. It is used to combine result set of 2 or more tables into single table
+2. Column number should exactly match in all table
+3. It removes repeated values and gives only unique values from both table
+*/
+
+select * from my_table_one;
+select * from my_table_two;
+
+select * from my_table_one
+union
+select * from my_table_two;
+
+select id, data from my_table_one
+union
+select data,id from my_table_two;
+
+-- ERROR
+select id, data from my_table_one
+union
+select id from my_table_two;
+
+-- union all
+
+select * from my_table_one
+union
+select * from my_table_two;
+
+select * from my_table_one
+union all
+select * from my_table_two;
+
+
+select * from my_table_one
+union all
+select * from my_table_two
+order by id;
+-- to add condition or sorting alwas use first_table columns only
+
+-- with union we achieve full outer join
+-- full outer join = left join + right join
+
+select * from my_table_one t1
+left join my_table_two t2
+on t1.id = t2.id
+union
+select * from my_table_one t1
+right join my_table_two t2
+on t1.id = t2.id;
+
+-- reverse engineering (EER)
