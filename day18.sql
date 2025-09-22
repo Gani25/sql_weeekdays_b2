@@ -89,3 +89,26 @@ where salary >
         where e2.dept_id = e1.dept_id
     )
 order by salary;
+
+-- FIND department where we don't have any employees
+
+
+-- Views
+/*
+1. Views are Database Object 
+2. Views are virtual table which is based on SQL Select statements.
+*/
+
+
+create view emp_with_dept 
+as
+select e1.*, dept_name, location from employee e1
+join department d on e1.dept_id = d.dept_id
+where salary >
+	(
+		select avg(salary) from employee e2
+        where e2.dept_id = e1.dept_id
+    )
+order by salary;
+
+select * from emp_with_dept;
