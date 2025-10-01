@@ -303,4 +303,3 @@ join orders o on c.customer_id = o.customer_id
 group by city
 order by total_orders desc
 limit 2;
-
