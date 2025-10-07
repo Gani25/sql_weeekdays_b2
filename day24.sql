@@ -157,3 +157,88 @@ delimiter ;
 
 
 call handleException();
+
+/*
+Triggers
+1. Special type of stored procedre which runs automatically when the 
+DML(Insert, Update, Delete) operations is performed
+Types of trigger
+1. Before -> Insert, Update, Delete
+2. After -> Insert, Update, Delete
+
+// Two Keywords
+1. new -> insert, update set
+2. old -> delete, update db rows -> old
+*/
+
+use sprk_morning;
+
+show tables;
+
+select * from employee;
+create table customer 
+(
+	cid int primary key auto_increment,
+    first_name varchar(30) not null,
+    last_name varchar(30) not null
+) ;
+
+
+insert into customer values
+(default, "aYusH","meHTA"),
+(default, "abdul","gani"),
+(default, "PRANJALI","YADAV"),
+(default, "Ashutosh","Verma");
+
+SELECT 
+    *
+FROM
+    customer;
+
+insert into customer values
+(default, "    Shoaib   ","    Khan    ");
+
+select * from customer;
+
+delimiter $
+
+create trigger tr1
+before insert on customer
+for each row
+begin
+	
+    set new.first_name = trim(new.first_name);
+    set new.first_name = concat(
+		upper(
+			substring(new.first_name,1,1)
+        ),lower(
+			substring(new.first_name,2)
+        ));
+        
+	set new.last_name = trim(new.last_name);
+    set new.last_name = concat(
+		upper(
+			substring(new.last_name,1,1)
+        ),lower(
+			substring(new.last_name,2)
+        ));
+
+end $
+delimiter ;
+
+show triggers from sprk_morning;
+
+
+insert into customer values
+(default, "    Shoail   ","    Khan    ");
+
+
+select * from customer;
+
+insert into customer values
+(default, "    ASHISH   ","    VerMA");
+
+
+select * from customer;
+
+-- update
