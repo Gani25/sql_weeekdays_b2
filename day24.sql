@@ -89,3 +89,71 @@ get_product_sold_count(productCode) product_sold
 from products
 ) as sold_prods
 where product_sold = 0;
+
+
+-- Exception Handling
+show tables;
+select * from customers;
+select * from orders;
+select * from orderdetail;
+select * from employees;
+select * from offices;
+
+delimiter $
+create procedure handleException()
+begin
+	select * from customers;
+	select * from orders;
+	select * from orderdetail;
+	select * from employees;
+	select * from offices;
+end $
+delimiter ;
+
+
+call handleException();
+
+/*
+Error Code: 1146 Table 'classicmodels.orderdetail' doesn't exist
+1. Exit Handler
+2. Continue Handler
+*/
+
+delimiter $
+drop procedure if exists handleException $
+create procedure handleException()
+begin
+	declare exit handler for 1146 
+    select "Table Not Found" as message;
+    
+	select * from customers;
+	select * from orders;
+	select * from orderdetail;
+	select * from employees;
+	select * from offices;
+	select * from payment;
+end $
+delimiter ;
+
+
+call handleException();
+
+
+delimiter $
+drop procedure if exists handleException $
+create procedure handleException()
+begin
+	declare continue handler for 1146 
+    select "Table Not Found" as message;
+	
+	select * from customers;
+	select * from orders;
+	select * from orderdetail;
+	select * from employees;
+	select * from offices;
+	select * from payment;
+end $
+delimiter ;
+
+
+call handleException();
