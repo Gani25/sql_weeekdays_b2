@@ -80,3 +80,66 @@ where cid = 2;
 
 select * from customer;
 select * from customer_records;
+
+drop trigger update_data;
+drop trigger tr1;
+
+
+/*
+Indexing:
+1. It is used to improve the speed of 
+	search operations
+2. Clustered Index: Primary Key -> BTREE
+	Physically sort column in ASC
+3. Non - Clustered Index
+*/
+
+
+
+show indexes from customer;
+alter table customer
+modify cid int;
+
+alter table customer
+drop constraint `primary`;
+
+show indexes from customer;
+create index idx1 on customer(first_name);
+show indexes from customer;
+desc customer;
+alter table customer
+modify cid int default null;
+desc customer;
+create unique index uniq_idx on customer(cid);
+
+show indexes from customer;
+desc customer;
+
+
+create index uniq_idx on customer(cid);
+
+select * from customer;
+update customer set last_name = "gupta"
+where cid = 7;
+alter table customer
+modify last_name varchar(30) primary key;
+
+show indexes from customer;
+desc customer;
+
+select * from customer;
+
+drop index uniq_idx on customer;
+show indexes from customer;
+desc customer;
+
+drop index idx1 on customer;
+show indexes from customer;
+desc customer;
+
+drop index `primary` on customer;
+
+show indexes from customer;
+desc customer;
+
+select * from customer;
