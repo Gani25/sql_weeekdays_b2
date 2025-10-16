@@ -61,3 +61,45 @@ date_of_joining, dept_id from employee;
 select  row_number() over (order by salary desc) as sr_no, emp_id ,
 emp_name, phone, salary, date_of_birth,
 date_of_joining, dept_id from employee;
+
+-- rank
+select * from employee;
+select *, rank()over(order by salary desc) as salary_rank
+from employee;
+
+-- dense_rank
+select *, dense_rank()over(order by salary desc) as salary_rank
+from employee;
+
+-- find ranks on salary desc based on department
+
+select *, 
+dense_rank()over(partition by dept_id order by salary desc) as salary_rank
+from employee;
+
+-- find all employee who earns second highest salary in their department
+
+
+-- ERROR
+select *, 
+dense_rank()over(partition by dept_id order by salary desc) as salary_rank
+from employee
+having salary_rank = 2;
+
+-- subquery in from clause
+select * from 
+(
+	select *, 
+	dense_rank()over(partition by dept_id order by salary desc) as salary_rank
+	from employee
+) as emp_with_rank
+where salary_rank = 2;
+-- common table expression -> temporary table data store
+with emp_with_rank as
+(
+	select *, 
+	dense_rank()over(partition by dept_id order by salary desc) as salary_rank
+	from employee
+)
+select * from emp_with_rank
+where salary_rank = 2;
