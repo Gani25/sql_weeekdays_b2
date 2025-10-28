@@ -103,3 +103,4 @@ with emp_with_rank as
 )
 select * from emp_with_rank
 where salary_rank = 2;
+ 
